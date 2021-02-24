@@ -14,3 +14,10 @@ python -m venv <env_name>
 ```
 pip install -r requirements.txt
 ```
+
+**Run The Tests**
+Make sure virtural environment is activated
+
+```
+python -m pytest backend/tests
+```
