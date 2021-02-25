@@ -22,6 +22,13 @@ Make sure virtural environment is activated
 python -m pytest backend/tests
 ```
 
+**Run The application and API**
+Make sure virtural environment is activated
+
+```
+python -m backend.app
+```
+
 <hr>
 
 ## Concepts
