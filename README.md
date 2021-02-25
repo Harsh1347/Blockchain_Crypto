@@ -1,4 +1,4 @@
-# Blockchain_Crypto
+# :heavy_dollar_sign: :moneybag: Blockchain and Cryptocurrency using Python :moneybag: :heavy_dollar_sign:
 
 **Create Virtual Environment**
 ```
