@@ -11,7 +11,7 @@ def crypto_hash(*args):
     # sorted because order of argument should not change the hash.
     stringified_args = sorted(map(lambda data: json.dumps(data), args))
 
-    joined_data = ''.join(stringified_args)
+    joined_data = '^'.join(stringified_args)
 
     return hashlib.sha256(joined_data.encode('utf-8')).hexdigest()
 

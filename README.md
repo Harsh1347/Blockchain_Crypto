@@ -29,6 +29,15 @@ Make sure virtural environment is activated
 python -m backend.app
 ```
 
+**Run a peer instance**
+Make sure virtural environment is activated
+
+Windows CMD
+```
+set PEER=True&& python -m backend.app
+```
+
+
 <hr>
 
 ## Concepts
@@ -50,3 +59,7 @@ python -m backend.app
 - ***Chain validation*** is the process of ensuring that the data of an external blockchain is formatted correctly. For the blockchain to be valid, there are multiple rules to enforce. For starters, every block must be valid, with a proper hash based on the block fields, correctly adjusted difficulty, acceptable number of leading 0's in the hash for the proof of work requirement, and more. Likewise, in the blockchain itself must start with the genesis block, and every block's last hash must reference the hash of the block that came before it.
 
 - ***Chain replacement*** is the process of substituting the current blockchain data for the data of an incoming blockchain. If the incoming blockchain is longer, and valid, then it should replace the current blockchain. This will allow a valid blockchain, with new blocks, to spread across the eventual blockchain network, becoming the true blockchain that all nodes in the blockchain network agree upon.
+
+- The ***publisher/subscriber*** pattern, or ***pub/sub*** for short, is a networking pattern that exposes various communication channels. Publishers broadcast messages on those channels. And subscribers receive messages on those channels.
+
+- 
