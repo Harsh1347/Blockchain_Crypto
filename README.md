@@ -16,6 +16,7 @@ pip install -r requirements.txt
 ```
 
 **Run The Tests**
+
 Make sure virtural environment is activated
 
 ```
@@ -23,6 +24,7 @@ python -m pytest backend/tests
 ```
 
 **Run The application and API**
+
 Make sure virtural environment is activated
 
 ```
@@ -30,6 +32,7 @@ python -m backend.app
 ```
 
 **Run a peer instance**
+
 Make sure virtural environment is activated
 
 Windows CMD
