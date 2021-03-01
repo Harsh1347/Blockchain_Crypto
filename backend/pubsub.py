@@ -5,6 +5,7 @@ from pubnub.pnconfiguration import PNConfiguration
 from pubnub.callbacks import SubscribeCallback
 
 from backend.blockchain.block import Block
+from backend.wallet.transaction import Transaction
 
 pnconfig = PNConfiguration()
 
@@ -15,14 +16,16 @@ pubnub = PubNub(pnconfig)
 
 CHANNELS = {
     'TEST': 'TEST',
-    'BLOCK': 'BLOCK'
+    'BLOCK': 'BLOCK',
+    'TRANSACTION': 'TRANSACTION',
 }
 
 
 class Listener(SubscribeCallback):
 
-    def __init__(self, blockchain):
+    def __init__(self, blockchain, transaction_pool):
         self.blockchain = blockchain
+        self.transaction_pool = transaction_pool
 
     def message(self, pubnub, message_object):
         print(
@@ -36,6 +39,10 @@ class Listener(SubscribeCallback):
                 print('\n -- Successfully replaced the chain')
             except Exception as e:
                 print(f'\n -- Did not  replace chain: {e}')
+        elif message_object.channel == CHANNELS['TRANSACTION']:
+            transaction = Transaction.from_json(message_object.message)
+            self.transaction_pool.set_transaction(transaction)
+            print('\n -- Set the new transaction in the transaction pool')
 
 
 class PubSub():
@@ -44,10 +51,10 @@ class PubSub():
     Provides communication between the nodes of the blockchain network.     
     """
 
-    def __init__(self, blockchain):
+    def __init__(self, blockchain, transaction_pool):
         self.pubnub = PubNub(pnconfig)
         self.pubnub.subscribe().channels(CHANNELS.values()).execute()
-        self.pubnub.add_listener(Listener(blockchain))
+        self.pubnub.add_listener(Listener(blockchain, transaction_pool))
 
     def publish(self, channel, message):
         """
@@ -58,9 +65,15 @@ class PubSub():
 
     def broadcast_block(self, block):
         """
-        Broadcast a block object to all nodes
+        Broadcast a block object to all nodes.
         """
         self.publish(CHANNELS['BLOCK'], block.to_json())
+
+    def broadcast_transaction(self, transaction):
+        """
+        Broadcast a transaction to all nodes.
+        """
+        self.publish(CHANNELS['TRANSACTION'], transaction.to_json())
 
 
 def main():
