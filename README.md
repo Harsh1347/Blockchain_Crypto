@@ -40,6 +40,13 @@ Windows CMD
 set PEER=True&& python -m backend.app
 ```
 
+**Start frontend**
+
+In the  frontend directory:
+
+```
+npm run start 
+```
 
 <hr>
 

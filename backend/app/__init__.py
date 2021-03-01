@@ -35,7 +35,7 @@ def route_blockchain_mine():
 
 
 @app.route('/wallet/transact', methods=['POST'])
-def route_wallet_transact:
+def route_wallet_transact():
     transaction_data = request.get_json()
     transaction = Transaction(
         wallet,
@@ -43,7 +43,7 @@ def route_wallet_transact:
         transaction_data['amount'],
 
     )
-    return jsonify(trasnaction.to_json())
+    return jsonify(transaction.to_json())
 
 
 ROOT_PORT = 5000
