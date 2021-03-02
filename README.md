@@ -85,3 +85,5 @@ npm run start
 - ***Validating transactions*** involves checking that the total currency sent to the recipients is correct, and that the signature is correct according to the presented public key and transaction output.
 
 - The ***transaction pool*** is an object that collects transactions that have been broadcasted across the network. It stores transactions according to their id. The idea is that this transaction pool will collect the transactions that miners will use as the basis of data for new blocks.
+
+- The ***mining reward***, a transaction with a standard amount of cryptocurrency, incentivizes miners to continue investing cpu power to mine new blocks. That way, the cryptocurrency's backing blockchain will grow at a steady pace, and continue to make transactions official.

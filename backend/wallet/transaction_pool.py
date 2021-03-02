@@ -34,7 +34,6 @@ class TransactionPool:
         """
         for block in blockchain.chain:
             for transaction in block.data:
-                self.transaction_map[transaction['id']]
                 try:
                     del self.transaction_map[transaction['id']]
                 except KeyError:
