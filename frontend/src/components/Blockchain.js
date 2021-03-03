@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { API_BASE_URL } from '../config'
+import Block from './Block'
 
 function Blockchain() {
 
@@ -16,7 +17,7 @@ function Blockchain() {
         <div className='Blockchain'>
             <h3>Blockchain</h3>
             <div>
-                {blockchain.map(block => <div key={block.hash}>{JSON.stringify(block)}</div>)}
+                {blockchain.map(block => <Block key={block.hash} block={block} />)}
             </div>
         </div>
     )
