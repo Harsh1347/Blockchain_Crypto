@@ -73,6 +73,19 @@ def route_wallet_info():
     return jsonify({'address': wallet.address, 'balance': wallet.balance})
 
 
+@app.route('/blockchain/range')
+def route_blockchain_range():
+    start = int(request.args.get('start'))
+    end = int(request.args.get('end'))
+
+    return jsonify(blockchain.to_json()[::-1][start:end])
+
+
+@app.route('/blockchain/length')
+def route_blockchain_length():
+    return jsonify(len(blockchain.chain))
+
+
 ROOT_PORT = 5000
 PORT = ROOT_PORT
 
