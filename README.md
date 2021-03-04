@@ -40,6 +40,15 @@ Windows CMD
 set PEER=True&& python -m backend.app
 ```
 
+**Seed backend with data**
+
+Make sure virtural environment is activated
+
+Windows CMD
+```
+set SEED_DATA=True&& python -m backend.app
+```
+
 **Start frontend**
 
 In the  frontend directory:
