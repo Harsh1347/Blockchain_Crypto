@@ -1,9 +1,9 @@
 import '../App.css';
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import { API_BASE_URL } from '../config'
 
-import Blockchain from './Blockchain'
 
 function App() {
 
@@ -21,12 +21,15 @@ function App() {
     <div className="App">
       <img className="logo" src={logo} alt="PyChain logo" />
       <h3>Welcome to PyChain</h3>
+      <br />
+      <Link to='/blockchain'>Blockchain</Link>
+      <Link to='/conduct-transaction'>Conduct Transaction</Link>
+      <Link to='/transaction-pool'>Transaction Pool</Link>
+      <br />
       <div className='WalletInfo'>
         <div>Address: {address}</div>
         <div>Balance: {balance}</div>
       </div>
-      <br />
-      <Blockchain />
     </div>
   );
 }

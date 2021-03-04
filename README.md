@@ -57,6 +57,15 @@ In the  frontend directory:
 npm run start 
 ```
 
+**Pubnub account**
+
+Create account at [https://www.pubnub.com/](https://www.pubnub.com/) to get the 
+
+- Subscribe key
+- Publish key
+
+used in [pubsub.py]() file
+
 <hr>
 
 ## Concepts

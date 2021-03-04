@@ -53,14 +53,16 @@ def route_wallet_transact():
     transaction = transaction_pool.existing_transaction(wallet.address)
 
     if transaction:
-        transaction.update(wallet,
-                           transaction_data['recipient'],
-                           transaction_data['amount'],)
+        transaction.update(
+            wallet,
+            transaction_data['recipient'],
+            transaction_data['amount']
+        )
     else:
         transaction = Transaction(
             wallet,
             transaction_data['recipient'],
-            transaction_data['amount'],
+            transaction_data['amount']
         )
 
     pubsub.broadcast_transaction(transaction)
@@ -86,6 +88,22 @@ def route_blockchain_length():
     return jsonify(len(blockchain.chain))
 
 
+@app.route('/known-addresses')
+def route_known_addresses():
+    known_addresses = set()
+
+    for block in blockchain.chain:
+        for transaction in block.data:
+            known_addresses.update(transaction['output'].keys())
+
+    return jsonify(list(known_addresses))
+
+
+@app.route('/transactions')
+def route_transaction():
+    return jsonify(transaction_pool.transaction_data())
+
+
 ROOT_PORT = 5000
 PORT = ROOT_PORT
 
@@ -109,5 +127,10 @@ if os.environ.get('SEED_DATA') == 'True':
             Transaction(Wallet(), Wallet().address,
                         random.randint(2, 50)).to_json(),
         ])
+    for i in range(3):
+        transaction_pool.set_transaction(
+            Transaction(Wallet(), Wallet().address,
+                        random.randint(2, 50))
+        )
 
 app.run(port=PORT)
