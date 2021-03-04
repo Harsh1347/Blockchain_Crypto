@@ -64,7 +64,7 @@ Create account at [https://www.pubnub.com/](https://www.pubnub.com/) to get the
 - Subscribe key
 - Publish key
 
-used in [pubsub.py]() file
+used in [pubsub.py](https://github.com/Harsh1347/Blockchain_Crypto/blob/main/backend/pubsub.py) file
 
 <hr>
 
