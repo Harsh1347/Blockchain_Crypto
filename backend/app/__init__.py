@@ -11,9 +11,11 @@ from backend.wallet.transaction import Transaction
 from backend.wallet.transaction_pool import TransactionPool
 from backend.pubsub import PubSub
 
+FRONTEND_URL = 'http://127.0.0.1:3000'
+
 app = Flask(__name__)
 CORS(app,
-     resources={r'/*': {'origin': 'http://127.0.0.1:3000'}})
+     resources={r'/*': {'origin': FRONTEND_URL}})
 
 blockchain = Blockchain()
 wallet = Wallet(blockchain)
@@ -86,5 +88,13 @@ if os.environ.get('PEER') == 'True':
     except Exception as e:
         print(f"\n -- Error synchronizing: {e}")
 
+if os.environ.get('SEED_DATA') == 'True':
+    for i in range(10):
+        blockchain.add_block([
+            Transaction(Wallet(), Wallet().address,
+                        random.randint(2, 50)).to_json(),
+            Transaction(Wallet(), Wallet().address,
+                        random.randint(2, 50)).to_json(),
+        ])
 
 app.run(port=PORT)
